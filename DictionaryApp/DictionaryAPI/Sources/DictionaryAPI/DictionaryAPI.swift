@@ -16,13 +16,13 @@ public protocol DictionaryAPIProtocol {
                       ) -> Void)
 }
 
-public class DictionaryAPI {
+public final class DictionaryAPI {
     
-    public var sourceURL: DictionaryURL?
+    public private(set) var sourceURL: DictionaryURL?
     
-    public static let shared: DictionaryAPIProtocol = DictionaryAPI()
-    
-    private init() { }
+    public init(_ url: DictionaryURL) {
+        configure(url)
+    }
 }
 
 extension DictionaryAPI: DictionaryAPIProtocol {

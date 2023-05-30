@@ -42,7 +42,7 @@ public class FilterSelector: UIView {
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .black
         
-        let wrapperGrid = Grid.vertical {
+        let wrapperGrid = Grid.horizontal {
             Star(value: 1, margin: .init(top: 5,
                                          left: 5,
                                          bottom: 5,
@@ -101,8 +101,6 @@ public class FilterSelector: UIView {
     public override func sizeThatFits(_ size: CGSize) -> CGSize {
         var totalWidth = stackView.spacing * CGFloat(stackView.subviews.count - 1)
         var totalHeight: CGFloat = .zero
-        
-        print("count: \(stackView.arrangedSubviews.count)")
         
         for view in stackView.arrangedSubviews {
             let calculatedSize = view.sizeThatFits(size)

@@ -32,7 +32,8 @@ public class DataProviderService: DataProviderServiceProtocol {
             }
             
             if response.statusCode < 200 || response.statusCode > 299 {
-                completion(.failure(.statusCode(response.statusCode)))
+                completion(.failure(.statusCode(response.statusCode,
+                                                responseData: data)))
                 return
             }
             

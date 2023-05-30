@@ -8,16 +8,16 @@
 import Foundation
 
 public enum DataProviderServiceError: Error {
-    case statusCode(_ code: Int)
+    case statusCode(_ code: Int, responseData: Data?)
     case noResponse
     case emptyResponse
     case decodeError
     case typeMissMatchError
     case urlError
     
-    public var localizedDescription: String? {
+    public var description: String {
         switch self {
-        case .statusCode(let code):
+        case .statusCode(let code, _):
             return "Connection error with status code: \(code)"
         case .noResponse:
             return "Connection error: No response from the server."

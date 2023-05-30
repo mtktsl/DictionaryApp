@@ -8,8 +8,8 @@
 import Foundation
 
 public struct WordPhoneticModel: Decodable {
-    let text: String?
-    let audioSource: String?
+    public let text: String?
+    public let audioSource: String?
     
     enum CodingKeys: String, CodingKey {
         case text

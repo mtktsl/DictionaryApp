@@ -18,6 +18,18 @@
 		6FB0F9AD2A24C12000CDD3BA /* DictionaryAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 6FB0F9AC2A24C12000CDD3BA /* DictionaryAPI */; };
 		6FB0F9AF2A24C12400CDD3BA /* FilterSelector in Frameworks */ = {isa = PBXBuildFile; productRef = 6FB0F9AE2A24C12400CDD3BA /* FilterSelector */; };
 		6FB0F9B12A24C12800CDD3BA /* GridLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 6FB0F9B02A24C12800CDD3BA /* GridLayout */; };
+		6FB0F9B32A24C85E00CDD3BA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9B22A24C85E00CDD3BA /* HomeViewModel.swift */; };
+		6FB0F9B62A24CA1400CDD3BA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9B52A24CA1400CDD3BA /* AppCoordinator.swift */; };
+		6FB0F9B82A24CA3900CDD3BA /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9B72A24CA3900CDD3BA /* CoordinatorProtocol.swift */; };
+		6FB0F9BA2A24CC2C00CDD3BA /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9B92A24CC2C00CDD3BA /* HomeCoordinator.swift */; };
+		6FB0F9BE2A24CCF300CDD3BA /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9BD2A24CCF300CDD3BA /* WordDetailViewController.swift */; };
+		6FB0F9C02A24CCFD00CDD3BA /* WordDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9BF2A24CCFD00CDD3BA /* WordDetailViewModel.swift */; };
+		6FB0F9C72A24F15700CDD3BA /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9C62A24F15700CDD3BA /* UIColor+Extension.swift */; };
+		6FB0F9CA2A25500300CDD3BA /* RecentSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9C92A25500300CDD3BA /* RecentSearchCell.swift */; };
+		6FB0F9CC2A25563800CDD3BA /* RecentSearchCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9CB2A25563800CDD3BA /* RecentSearchCellModel.swift */; };
+		6FB0F9D22A25D57E00CDD3BA /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9D12A25D57E00CDD3BA /* KeyboardObserver.swift */; };
+		6FB0F9D72A25E4F800CDD3BA /* RecentSearchCoreModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9D52A25E4F800CDD3BA /* RecentSearchCoreModel.xcdatamodeld */; };
+		6FB0F9E42A25F14600CDD3BA /* RecentSearch+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0F9E22A25F14600CDD3BA /* RecentSearch+CoreDataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +47,19 @@
 		6FB0F9A92A24C0E900CDD3BA /* NetworkDataAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NetworkDataAPI; path = ../NetworkDataAPI; sourceTree = "<group>"; };
 		6FB0F9AA2A24C0F100CDD3BA /* FilterSelector */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FilterSelector; path = ../FilterSelector; sourceTree = "<group>"; };
 		6FB0F9AB2A24C0FA00CDD3BA /* DictionaryAPI */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DictionaryAPI; path = ../DictionaryAPI; sourceTree = "<group>"; };
+		6FB0F9B22A24C85E00CDD3BA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		6FB0F9B52A24CA1400CDD3BA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		6FB0F9B72A24CA3900CDD3BA /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		6FB0F9B92A24CC2C00CDD3BA /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		6FB0F9BD2A24CCF300CDD3BA /* WordDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailViewController.swift; sourceTree = "<group>"; };
+		6FB0F9BF2A24CCFD00CDD3BA /* WordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailViewModel.swift; sourceTree = "<group>"; };
+		6FB0F9C62A24F15700CDD3BA /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		6FB0F9C92A25500300CDD3BA /* RecentSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchCell.swift; sourceTree = "<group>"; };
+		6FB0F9CB2A25563800CDD3BA /* RecentSearchCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchCellModel.swift; sourceTree = "<group>"; };
+		6FB0F9D12A25D57E00CDD3BA /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		6FB0F9D32A25E48E00CDD3BA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		6FB0F9D62A25E4F800CDD3BA /* RecentSearchCoreModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecentSearchCoreModel.xcdatamodel; sourceTree = "<group>"; };
+		6FB0F9E22A25F14600CDD3BA /* RecentSearch+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecentSearch+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +97,13 @@
 		6FA954A32A22E68800E11275 /* DictionaryApp */ = {
 			isa = PBXGroup;
 			children = (
-				6FA954CC2A22F2B000E11275 /* Extensions */,
+				6FB0F9D02A25D53600CDD3BA /* Common */,
 				6FA954C32A22EA4B00E11275 /* Application */,
+				6FA954CC2A22F2B000E11275 /* Extensions */,
+				6FB0F9CD2A25571B00CDD3BA /* Coordinators */,
 				6FA954C42A22EA6200E11275 /* Views */,
+				6FB0F9D82A25EBE100CDD3BA /* Models */,
+				6FB0F9CE2A25577A00CDD3BA /* Cells */,
 				6FA954B22A22E68800E11275 /* Info.plist */,
 			);
 			path = DictionaryApp;
@@ -94,6 +123,7 @@
 		6FA954BE2A22E81100E11275 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6FB0F9D32A25E48E00CDD3BA /* CoreData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -113,6 +143,7 @@
 		6FA954C42A22EA6200E11275 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6FB0F9BC2A24CCDD00CDD3BA /* WordDetail */,
 				6FA954C52A22EA6C00E11275 /* Home */,
 			);
 			path = Views;
@@ -123,6 +154,7 @@
 			children = (
 				6FA954AA2A22E68800E11275 /* Main.storyboard */,
 				6FA954A82A22E68800E11275 /* HomeViewController.swift */,
+				6FB0F9B22A24C85E00CDD3BA /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -131,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				6FA954D92A24797B00E11275 /* UIEdgeInsets+Extension.swift */,
+				6FB0F9C62A24F15700CDD3BA /* UIColor+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -141,6 +174,51 @@
 				6FB0F9A12A24B43500CDD3BA /* ApplicationConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		6FB0F9BC2A24CCDD00CDD3BA /* WordDetail */ = {
+			isa = PBXGroup;
+			children = (
+				6FB0F9BD2A24CCF300CDD3BA /* WordDetailViewController.swift */,
+				6FB0F9BF2A24CCFD00CDD3BA /* WordDetailViewModel.swift */,
+			);
+			path = WordDetail;
+			sourceTree = "<group>";
+		};
+		6FB0F9CD2A25571B00CDD3BA /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				6FB0F9B72A24CA3900CDD3BA /* CoordinatorProtocol.swift */,
+				6FB0F9B52A24CA1400CDD3BA /* AppCoordinator.swift */,
+				6FB0F9B92A24CC2C00CDD3BA /* HomeCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		6FB0F9CE2A25577A00CDD3BA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				6FB0F9C92A25500300CDD3BA /* RecentSearchCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		6FB0F9D02A25D53600CDD3BA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6FB0F9D12A25D57E00CDD3BA /* KeyboardObserver.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6FB0F9D82A25EBE100CDD3BA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6FB0F9D52A25E4F800CDD3BA /* RecentSearchCoreModel.xcdatamodeld */,
+				6FB0F9E22A25F14600CDD3BA /* RecentSearch+CoreDataClass.swift */,
+				6FB0F9CB2A25563800CDD3BA /* RecentSearchCellModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,11 +297,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FB0F9B82A24CA3900CDD3BA /* CoordinatorProtocol.swift in Sources */,
+				6FB0F9BE2A24CCF300CDD3BA /* WordDetailViewController.swift in Sources */,
+				6FB0F9CC2A25563800CDD3BA /* RecentSearchCellModel.swift in Sources */,
+				6FB0F9E42A25F14600CDD3BA /* RecentSearch+CoreDataClass.swift in Sources */,
+				6FB0F9CA2A25500300CDD3BA /* RecentSearchCell.swift in Sources */,
 				6FB0F9A22A24B43500CDD3BA /* ApplicationConstants.swift in Sources */,
+				6FB0F9C72A24F15700CDD3BA /* UIColor+Extension.swift in Sources */,
+				6FB0F9BA2A24CC2C00CDD3BA /* HomeCoordinator.swift in Sources */,
+				6FB0F9D72A25E4F800CDD3BA /* RecentSearchCoreModel.xcdatamodeld in Sources */,
+				6FB0F9B32A24C85E00CDD3BA /* HomeViewModel.swift in Sources */,
 				6FA954DA2A24797B00E11275 /* UIEdgeInsets+Extension.swift in Sources */,
+				6FB0F9C02A24CCFD00CDD3BA /* WordDetailViewModel.swift in Sources */,
+				6FB0F9D22A25D57E00CDD3BA /* KeyboardObserver.swift in Sources */,
 				6FA954A92A22E68800E11275 /* HomeViewController.swift in Sources */,
 				6FA954A52A22E68800E11275 /* AppDelegate.swift in Sources */,
 				6FA954A72A22E68800E11275 /* SceneDelegate.swift in Sources */,
+				6FB0F9B62A24CA1400CDD3BA /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +546,19 @@
 			productName = GridLayout;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		6FB0F9D52A25E4F800CDD3BA /* RecentSearchCoreModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6FB0F9D62A25E4F800CDD3BA /* RecentSearchCoreModel.xcdatamodel */,
+			);
+			currentVersion = 6FB0F9D62A25E4F800CDD3BA /* RecentSearchCoreModel.xcdatamodel */;
+			path = RecentSearchCoreModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6FA954992A22E68800E11275 /* Project object */;
 }

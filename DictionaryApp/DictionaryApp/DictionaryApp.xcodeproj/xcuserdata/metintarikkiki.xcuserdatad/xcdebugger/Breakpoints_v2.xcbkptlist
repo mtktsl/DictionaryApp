@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "B94F6F3E-E1EF-4A26-ABB0-7BD3C8078D50"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "08FAF1A3-A51F-4C84-A2AE-09E500E2D6DC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../GridLayout/Sources/GridLayout/Grid/Grid.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
+            landmarkName = "layoutCellsOrthogonally()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "08FAF1A3-A51F-4C84-A2AE-09E500E2D6DC - c499fc7448810433"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GridLayout.Grid.layoutCellsOrthogonally() -&gt; ()"
+                  moduleName = "DictionaryApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metintarikkiki/Desktop/GYGY/odevler/puanliOdev3/DictionaryApp/GridLayout/Sources/GridLayout/Grid/Grid.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "368"
+                  endingLineNumber = "368"
+                  offsetFromSymbolStart = "1696">
+               </Location>
+               <Location
+                  uuid = "08FAF1A3-A51F-4C84-A2AE-09E500E2D6DC - c499fc74488105b7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GridLayout.Grid.layoutCellsOrthogonally() -&gt; ()"
+                  moduleName = "DictionaryApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metintarikkiki/Desktop/GYGY/odevler/puanliOdev3/DictionaryApp/GridLayout/Sources/GridLayout/Grid/Grid.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "372"
+                  endingLineNumber = "372"
+                  offsetFromSymbolStart = "1952">
+               </Location>
+               <Location
+                  uuid = "08FAF1A3-A51F-4C84-A2AE-09E500E2D6DC - c499fc74488105b7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GridLayout.Grid.layoutCellsOrthogonally() -&gt; ()"
+                  moduleName = "DictionaryApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metintarikkiki/Desktop/GYGY/odevler/puanliOdev3/DictionaryApp/GridLayout/Sources/GridLayout/Grid/Grid.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "372"
+                  endingLineNumber = "372"
+                  offsetFromSymbolStart = "1672">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3B5DBCF7-F8B1-4939-AD33-20FAE8661827"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../GridLayout/Sources/GridLayout/Grid/Grid.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "setSizeAnchor(cell:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3B5DBCF7-F8B1-4939-AD33-20FAE8661827 - 15f5bffee0bf5e56"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GridLayout.Grid.setSizeAnchor(cell: GridLayout.GridCell) -&gt; ()"
+                  moduleName = "DictionaryApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metintarikkiki/Desktop/GYGY/odevler/puanliOdev3/DictionaryApp/GridLayout/Sources/GridLayout/Grid/Grid.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "325"
+                  endingLineNumber = "325"
+                  offsetFromSymbolStart = "2984">
+               </Location>
+               <Location
+                  uuid = "3B5DBCF7-F8B1-4939-AD33-20FAE8661827 - 15f5bffee0bf5e56"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GridLayout.Grid.setSizeAnchor(cell: GridLayout.GridCell) -&gt; ()"
+                  moduleName = "DictionaryApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metintarikkiki/Desktop/GYGY/odevler/puanliOdev3/DictionaryApp/GridLayout/Sources/GridLayout/Grid/Grid.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "325"
+                  endingLineNumber = "325"
+                  offsetFromSymbolStart = "2964">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FD7791F6-CE4E-4618-8F2D-7DC26F538BC0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../GridLayout/Sources/GridLayout/Grid/Grid.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
+            landmarkName = "setSizeAnchor(cell:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FD7791F6-CE4E-4618-8F2D-7DC26F538BC0 - 15f5bffee0bf5c46"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GridLayout.Grid.setSizeAnchor(cell: GridLayout.GridCell) -&gt; ()"
+                  moduleName = "DictionaryApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metintarikkiki/Desktop/GYGY/odevler/puanliOdev3/DictionaryApp/GridLayout/Sources/GridLayout/Grid/Grid.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "309"
+                  endingLineNumber = "309"
+                  offsetFromSymbolStart = "1980">
+               </Location>
+               <Location
+                  uuid = "FD7791F6-CE4E-4618-8F2D-7DC26F538BC0 - 15f5bffee0bf5c46"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GridLayout.Grid.setSizeAnchor(cell: GridLayout.GridCell) -&gt; ()"
+                  moduleName = "DictionaryApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metintarikkiki/Desktop/GYGY/odevler/puanliOdev3/DictionaryApp/GridLayout/Sources/GridLayout/Grid/Grid.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "309"
+                  endingLineNumber = "309"
+                  offsetFromSymbolStart = "2112">
+               </Location>
+               <Location
+                  uuid = "FD7791F6-CE4E-4618-8F2D-7DC26F538BC0 - 15f5bffee0bf5c46"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GridLayout.Grid.setSizeAnchor(cell: GridLayout.GridCell) -&gt; ()"
+                  moduleName = "DictionaryApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metintarikkiki/Desktop/GYGY/odevler/puanliOdev3/DictionaryApp/GridLayout/Sources/GridLayout/Grid/Grid.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "309"
+                  endingLineNumber = "309"
+                  offsetFromSymbolStart = "2080">
+               </Location>
+               <Location
+                  uuid = "FD7791F6-CE4E-4618-8F2D-7DC26F538BC0 - 15f5bffee0bf5c46"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GridLayout.Grid.setSizeAnchor(cell: GridLayout.GridCell) -&gt; ()"
+                  moduleName = "DictionaryApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metintarikkiki/Desktop/GYGY/odevler/puanliOdev3/DictionaryApp/GridLayout/Sources/GridLayout/Grid/Grid.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "309"
+                  endingLineNumber = "309"
+                  offsetFromSymbolStart = "2132">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

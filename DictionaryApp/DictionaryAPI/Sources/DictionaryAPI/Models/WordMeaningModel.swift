@@ -8,8 +8,8 @@
 import Foundation
 
 public struct WordMeaningModel: Decodable {
-    let partOfSpeech: String?
-    let definitions: [WordDefinitionModel]
+    public let partOfSpeech: String?
+    public let definitions: [WordDefinitionModel]
 }
 
 public struct WordDefinitionModel: Decodable {

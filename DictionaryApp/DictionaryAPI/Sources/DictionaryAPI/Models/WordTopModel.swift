@@ -8,8 +8,8 @@
 import Foundation
 
 public struct WordTopModel: Decodable {
-    let word: String?
-    let phonetic: String?
-    let phonetics: [WordPhoneticModel]
-    let meanings: [WordMeaningModel]
+    public let word: String?
+    public let phonetic: String?
+    public let phonetics: [WordPhoneticModel]
+    public let meanings: [WordMeaningModel]
 }

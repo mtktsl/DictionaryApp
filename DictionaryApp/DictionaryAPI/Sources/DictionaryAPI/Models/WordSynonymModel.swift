@@ -8,6 +8,6 @@
 import Foundation
 
 public struct WordSynonymModel: Decodable {
-    let word: String?
-    let score: Int?
+    public let word: String?
+    public let score: Int?
 }
