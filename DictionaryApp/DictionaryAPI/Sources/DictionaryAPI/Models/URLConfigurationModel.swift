@@ -14,9 +14,11 @@ public struct URLConfigurationModel {
     
     public func generateQueryURLString(_ queryString: String) -> String {
         return baseURLString
-                + "/" + routeString
-                + querySeperator
-                + queryString
+        + "/" + routeString
+        + querySeperator
+        + (queryString.addingPercentEncoding(
+            withAllowedCharacters: .alphanumerics
+        ) ?? "-")
     }
     
     public init(baseURLString: String,

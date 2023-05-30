@@ -17,6 +17,7 @@ public class DataProviderService: DataProviderServiceProtocol {
                                         dataType: T.Type = Data.self,
                                         decode: Bool = false,
                                         completion: @escaping (Result<T, DataProviderServiceError>) -> Void) {
+        
         guard let url = URL(string: urlString)
         else {
             completion(.failure(.urlError))
