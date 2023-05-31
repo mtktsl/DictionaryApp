@@ -7,21 +7,21 @@
 
 import UIKit
 
-class KeyboardObserver {
+public class KeyboardObserver {
     
-    private(set) weak var observer: UIViewController?
-    private(set) var isKeyboardOpen = false
-    private(set) var windowHeight: CGFloat = 0
+    public private(set) weak var observerController: UIViewController?
+    public private(set) var isKeyboardOpen = false
+    public private(set) var windowHeight: CGFloat = 0
     
-    init(observer: UIViewController) {
-        self.observer = observer
+    public init(_ observerController: UIViewController) {
+        self.observerController = observerController
     }
     
-    func windowChanged(_ newWindowHeight: CGFloat) {
-        windowHeight = newWindowHeight
+    deinit {
+        self.stopResizingObserver()
     }
     
-    func startResizingObserver() {
+    public func startResizingObserver() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillAppear(_:)),
@@ -37,20 +37,40 @@ class KeyboardObserver {
         )
     }
     
-    @objc func keyboardWillAppear(_ notification: NSNotification) {
+    public func stopResizingObserver() {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+    
+    @objc private func keyboardWillAppear(_ notification: NSNotification) {
         if !isKeyboardOpen {
+            setWindowHeightBuffer()
             resizeViewWithKeyboard(notification: notification,
-                                isOpening: true)
+                                   isOpening: true)
             isKeyboardOpen = true
         }
     }
     
-    @objc func keyboardWillDisappear(_ notification: NSNotification) {
+    @objc private func keyboardWillDisappear(_ notification: NSNotification) {
         if isKeyboardOpen {
+            setWindowHeightBuffer()
             resizeViewWithKeyboard(notification: notification,
                                    isOpening: false)
             isKeyboardOpen = false
         }
+    }
+    
+    private func setWindowHeightBuffer() {
+        windowHeight = observerController?.view.window?.screen.bounds.size.height ?? 0
     }
     
     private func resizeViewWithKeyboard(
@@ -82,9 +102,9 @@ class KeyboardObserver {
         ) { [weak self] in
             guard let self else { return }
             if isOpening {
-                observer?.view.frame.size.height -= keyboardSize.height
+                observerController?.view.frame.size.height -= keyboardSize.height
             } else {
-                observer?.view.frame.size.height = self.windowHeight
+                observerController?.view.frame.size.height = self.windowHeight
             }
         }
         animator.startAnimation()

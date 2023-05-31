@@ -7,6 +7,7 @@
 
 import UIKit
 import GridLayout
+import KeyboardObserver
 
 class HomeViewController: UIViewController {
 
@@ -17,6 +18,8 @@ class HomeViewController: UIViewController {
     
     private var windowHeight: CGFloat = 0
     private var isKeyboardOpen = false
+    
+    lazy var keyboardObserver = KeyboardObserver(self)
     
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(
@@ -33,6 +36,12 @@ class HomeViewController: UIViewController {
         return collectionView
     }()
     
+    var viewModel: HomeViewModelProtocol! {
+        didSet {
+            viewModel.delegate = self
+        }
+    }
+    
     lazy var mainGrid = Grid.vertical {
         Constant(value: 50,
                  margin: .homeSearchBarMargin) {
@@ -46,14 +55,6 @@ class HomeViewController: UIViewController {
             collectionView
         }
     }
-    
-    var viewModel: HomeViewModelProtocol! {
-        didSet {
-            viewModel.delegate = self
-        }
-    }
-    
-    lazy var keyboardObserver = KeyboardObserver(observer: self)
 }
 
 // ---------- Function Implementations ------------
@@ -67,16 +68,12 @@ extension HomeViewController {
         setupSearchButton()
         
         setupMainGrid()
-        
         keyboardObserver.startResizingObserver()
         view.bringSubviewToFront(searchButton)
     }
     
     override func viewDidLayoutSubviews() {
         mainGrid.setNeedsLayout()
-        keyboardObserver.windowChanged(
-            view.window?.windowScene?.screen.bounds.size.height ?? 0
-        )
         collectionView.reloadData()
     }
     

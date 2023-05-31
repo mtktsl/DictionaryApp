@@ -37,8 +37,8 @@ final class HomeCoordinator: CoordinatorProtocol {
     func popupError(
         title: String,
         message: String,
-        okOption: String?,
-        cancelOption: String?,
+        okOption: String? = nil,
+        cancelOption: String? = nil,
         onOk: ((UIAlertAction) -> Void)? = nil,
         onCancel: ((UIAlertAction) -> Void)? = nil
     ) {
@@ -48,14 +48,12 @@ final class HomeCoordinator: CoordinatorProtocol {
             preferredStyle: .alert
         )
         
-        if let okOption {
-            let okAction = UIAlertAction(
-                title: okOption,
-                style: .default,
-                handler: onOk
-            )
-            alertVC.addAction(okAction)
-        }
+        let okAction = UIAlertAction(
+            title: okOption ?? "OK",
+            style: .default,
+            handler: onOk
+        )
+        alertVC.addAction(okAction)
         
         if let cancelOption {
             let exitAction = UIAlertAction(
@@ -69,9 +67,21 @@ final class HomeCoordinator: CoordinatorProtocol {
         navigationController?.present(alertVC, animated: true)
     }
     
-    func navigateToDetail(_ word: String) {
+    func navigateToDetail(_ wordModel: WordTopModel) {
+        
         let detailVC = WordDetailViewController()
-        //TODO: add viewModel
+        
+        let service = DictionaryAPI(
+            .init(dictionaryBaseURL: ApplicationConstants.dictionaryURLConfig,
+                  synonymBaseURL: ApplicationConstants.synonymURLConfig)
+        )
+        
+        detailVC.viewModel = WordDetailViewModel(
+            coordinator: self,
+            service: service,
+            wordModel: wordModel
+        )
+        
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }

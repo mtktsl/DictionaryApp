@@ -1,3 +1,3 @@
 # DictionaryAPI
 
-A description of this package.
+Dictionary data fetching API.

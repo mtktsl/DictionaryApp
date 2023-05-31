@@ -17,8 +17,7 @@ extension HomeViewModel {
         static let recentSearchLabelText = "Recent search"
         static let searchFieldPlaceHolder = "Search"
     }
-    
-    fileprivate enum SearchError {
+    fileprivate enum SearchError: Error {
         case emptyTextField
         case invalidWord
         case connectionError(_ message: String,
@@ -43,7 +42,7 @@ protocol HomeViewModelProtocol: AnyObject {
     
     func getRecentSearch(_ index: Int) -> String?
     func queryForWord(_ word: String)
-    func navigateToDetail(_ word: String)
+    func navigateToDetail(_ wordModel: WordTopModel)
     
     func popupError(title: String,
                     message: String,
@@ -72,10 +71,7 @@ final class HomeViewModel {
         else { return }
         
         if let items = try? context.fetch(RecentSearch.fetchRequest()) {
-            print("Success fetch")
             recentSearches = items.reversed()
-        } else {
-            print("No fetch")
         }
     }
     
@@ -86,6 +82,10 @@ final class HomeViewModel {
         
         let newItem = RecentSearch(context: context)
         newItem.word = word
+        
+        if !recentSearches.filter({ $0.word == word }).isEmpty {
+            return
+        }
         
         if recentSearches.count == HomeVMConstants.cacheCapacity {
             let item = recentSearches.removeLast()
@@ -103,13 +103,15 @@ final class HomeViewModel {
     private func generateErrorPopUp(_ error: SearchError) {
         switch error {
         case .emptyTextField:
-            popupError(title: "Error",
-                       message: "Text field is empty",
-                       okOption: "Ok")
+            popupError(
+                title: "Error",
+                message: "Text field is empty"
+            )
         case .invalidWord:
-            popupError(title: "Error",
-                       message: "No query found for the given word",
-                       okOption: "Ok")
+            popupError(
+                title: "Error",
+                message: "No query found for the given word"
+            )
         case .connectionError(let message, let word):
             popupError(
                 title: "Connection Error",
@@ -119,8 +121,39 @@ final class HomeViewModel {
             ) { [weak self] _ in
                 guard let self else { return }
                 self.queryForWord(word)
-            } cancelHandler: { _ in
-                //TODO: pop back to home or remove this handler implementation
+            } cancelHandler: { [weak self] _ in
+                guard let _ = self else { return }
+            }
+        }
+    }
+    
+    private func onQuerySuccess(_ wordModel: [WordTopModel]) {
+        guard let firstModel = wordModel.first else { return }
+        guard let word = firstModel.word else { return }
+        
+        cacheRecentSearch(word)
+        
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.delegate?.reloadRecentSearches()
+            self.coordinator?.navigateToDetail(firstModel)
+        }
+    }
+    
+    private func onQueryError(_ word: String, error: DictionaryAPIError) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            
+            switch error {
+            case .statusCode(let code, _):
+                if code == 404 {
+                    self.generateErrorPopUp(.invalidWord)
+                }
+            default:
+                self.generateErrorPopUp(
+                    .connectionError(error.localizedDescription,
+                                     word: word)
+                )
             }
         }
     }
@@ -174,45 +207,25 @@ extension HomeViewModel: HomeViewModelProtocol {
     }
     
     func queryForWord(_ word: String) {
-        if word.isEmpty {
+        let trimmedWord = word.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmedWord.isEmpty {
             generateErrorPopUp(.emptyTextField)
         } else {
-            //TODO: Send query to the server
-            //cacheRecentSearch(word)
-            //delegate?.reloadRecentSearches()
-            
-            service?.dictionaryQuery(word) { [weak self] result in
+            service?.dictionaryQuery(trimmedWord) { [weak self] result in
                 guard let self else { return }
                 
                 switch result {
-                
-                case .success(_):
-                    print("Success")
-                    break
+                case .success(let data):
+                    self.onQuerySuccess(data)
                 
                 case .failure(let error):
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self else { return }
-                        
-                        switch error {
-                        case .statusCode(let code, _):
-                            if code == 404 {
-                                self.generateErrorPopUp(.invalidWord)
-                            }
-                        default:
-                            self.generateErrorPopUp(
-                                .connectionError(error.description,
-                                                 word: word)
-                            )
-                        }
-                    }
+                    self.onQueryError(trimmedWord, error: error)
                 }
             }
         }
     }
     
-    func navigateToDetail(_ word: String) {
-        cacheRecentSearch(word)
-        coordinator?.navigateToDetail(word)
+    func navigateToDetail(_ wordModel: WordTopModel) {
+        coordinator?.navigateToDetail(wordModel)
     }
 }

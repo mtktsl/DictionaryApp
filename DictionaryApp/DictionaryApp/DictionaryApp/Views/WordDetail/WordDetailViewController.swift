@@ -5,10 +5,15 @@
 //  Created by Metin Tarık Kiki on 29.05.2023.
 //
 
-import Foundation
 import UIKit
 
 class WordDetailViewController: UIViewController {
+    
+    var viewModel: WordDetailViewModelProtocol! {
+        didSet {
+            viewModel.delegate = self
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,5 +23,24 @@ class WordDetailViewController: UIViewController {
         label.text = "HELLO FROM DETAIL"
         
         label.frame = view.bounds
+        view.addSubview(label)
+    }
+}
+
+extension WordDetailViewController: WordDetailViewModelDelegate {
+    func synonymFetchSuccess() {
+        
+    }
+    
+    func synonymFetchError(error: Error) {
+        
+    }
+    
+    func soundFetchSuccess() {
+        
+    }
+    
+    func soundFetchError() {
+        
     }
 }

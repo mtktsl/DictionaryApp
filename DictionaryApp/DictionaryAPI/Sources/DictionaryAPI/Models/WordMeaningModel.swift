@@ -13,5 +13,5 @@ public struct WordMeaningModel: Decodable {
 }
 
 public struct WordDefinitionModel: Decodable {
-    let definition: String?
+    public let definition: String?
 }
