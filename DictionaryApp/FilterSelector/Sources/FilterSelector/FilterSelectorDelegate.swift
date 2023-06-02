@@ -9,5 +9,6 @@ import Foundation
 
 public protocol FilterSelectorDelegate: AnyObject {
     func onFilterSelected(_ filter: String)
+    func onFilterRemoved(_ filter: String)
     func onFilterClear()
 }

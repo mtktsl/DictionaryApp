@@ -37,6 +37,7 @@ protocol WordDetailViewModelProtocol: AnyObject {
     
     var wordString: String { get }
     var phonecticString: String { get }
+    var filterStrings: [String] { get set }
     
     var meaningsCount: Int { get }
     var isSynonymAvailable: Bool { get }
@@ -61,6 +62,14 @@ final class WordDetailViewModel {
     private var wordSynonyms: [WordSynonymModel]?
     
     weak var delegate: WordDetailViewModelDelegate?
+    
+    var filterStrings: [String] = [String]() {
+        didSet {
+            filteredWords = filteredMeanings()
+        }
+    }
+    
+    var filteredWords: [WordMeaningModel]?
     
     init(coordinator: HomeCoordinator,
          service: DictionaryAPIProtocol,
@@ -108,6 +117,19 @@ final class WordDetailViewModel {
                 }
             )
         }
+    }
+    
+    private func filteredMeanings() -> [WordMeaningModel] {
+        var result = [WordMeaningModel]()
+        for meaning in wordModel?.meanings ?? [] {
+            if let partOfSpeech = meaning.partOfSpeech {
+                if filterStrings.contains(partOfSpeech) {
+                    result.append(meaning)
+                }
+            }
+        }
+        
+        return result
     }
 }
 
@@ -182,33 +204,68 @@ extension WordDetailViewModel: WordDetailViewModelProtocol {
     }
     
     var meaningsCount: Int {
-        let validCount = wordModel?.meanings?
-            .filter({ $0.partOfSpeech != nil }).count
         
-        let result = validCount ?? 0
-        return wordSynonyms?.count ?? 0 > 0 ? result + 1 : result
+        if filteredWords?.isEmpty ?? true {
+            let validCount = wordModel?.meanings?
+                .filter({ $0.partOfSpeech != nil }).count
+            
+            let result = validCount ?? 0
+            
+            return wordSynonyms?.count ?? 0 > 0 ? result + 1 : result
+        } else {
+            let validCount = filteredWords?
+                .filter({$0.partOfSpeech != nil}).count
+            
+            let result = validCount ?? 0
+            
+            return wordSynonyms?.count ?? 0 > 0 ? result + 1 : result
+        }
     }
     
     func definitionsCount(at index: Int) -> Int {
         
-        if let count = wordModel?.meanings?.count {
-            if index >= count {
-                return 1
+        if filteredWords?.isEmpty ?? true {
+            
+            if let count = wordModel?.meanings?.count {
+                if index >= count {
+                    return 1
+                }
             }
+            
+            let definitionCount = wordModel?.meanings?[index]
+                .definitions?
+                    .filter({ $0.definition != nil }).count
+            
+            return definitionCount ?? 0
+            
+        } else {
+            
+            if let count = filteredWords?.count {
+                if index >= count {
+                    return 1
+                }
+            }
+            
+            let definitionCount = filteredWords?[index]
+                .definitions?
+                    .filter({ $0.definition != nil }).count
+            
+            return definitionCount ?? 0
         }
         
-        let definitionCount = wordModel?.meanings?[index]
-            .definitions?
-                .filter({ $0.definition != nil }).count
         
-        return definitionCount ?? 0
+        
     }
     
     func getMeaning(_ index: Int) -> WordMeaningModel? {
         if index < 0 || index >= meaningsCount {
             return nil
         } else {
-            return wordModel?.meanings?[index]
+            if filteredWords?.isEmpty ?? true {
+                return wordModel?.meanings?[index]
+            } else {
+                return filteredWords?[index]
+            }
         }
     }
     

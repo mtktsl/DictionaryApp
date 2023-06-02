@@ -122,6 +122,7 @@ extension WordDetailViewController {
                            height: 34)
         filterSelector.frame = frame
         filterScrollView.contentSize = frame.size
+        filterSelector.delegate = self
     }
     
     func setupTableView() {
@@ -217,4 +218,23 @@ extension WordDetailViewController: SynonymCellDelegate {
     func onCellTapped(_ text: String) {
         self.viewModel.queryForWord(text)
     }
+}
+
+extension WordDetailViewController: FilterSelectorDelegate {
+    func onFilterRemoved(_ filter: String) {
+        viewModel.filterStrings.removeAll { $0 == filter }
+        tableView.reloadData()
+    }
+    
+    func onFilterSelected(_ filter: String) {
+        viewModel.filterStrings.append(filter)
+        tableView.reloadData()
+    }
+    
+    func onFilterClear() {
+        viewModel.filterStrings = []
+        tableView.reloadData()
+    }
+    
+    
 }

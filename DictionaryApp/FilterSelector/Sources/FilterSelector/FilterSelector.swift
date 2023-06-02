@@ -222,11 +222,11 @@ public class FilterSelector: UIView {
         if !selectedFilters.contains(filter) {
             selectedFilters.insert(filter)
             view.layer.borderColor = borderSelectionColor.cgColor
+            delegate?.onFilterSelected(filter)
         } else {
             view.layer.borderColor = borderColor.cgColor
             selectedFilters.remove(filter)
+            delegate?.onFilterRemoved(filter)
         }
-        
-        delegate?.onFilterSelected(filter)
     }
 }
