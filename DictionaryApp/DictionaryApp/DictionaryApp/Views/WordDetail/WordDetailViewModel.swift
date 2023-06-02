@@ -34,9 +34,14 @@ protocol WordDetailViewModelProtocol: AnyObject {
     
     var delegate: WordDetailViewModelDelegate? { get set }
     
-    var itemCount: Int { get }
+    var wordString: String { get }
+    var phonecticString: String { get }
+    
+    var meaningsCount: Int { get }
+    func definitionsCount(at index: Int) -> Int
     
     func getMeaning(_ index: Int) -> WordMeaningModel?
+    func getDetailCellModel(section: Int, row: Int) -> DetailCellModel?
     func queryForWord(_ word: String)
     func navigateToDetail(_ wordModel: WordTopModel)
 }
@@ -44,7 +49,7 @@ protocol WordDetailViewModelProtocol: AnyObject {
 // ---- Class definition ----
 final class WordDetailViewModel {
     private(set) var service: DictionaryAPIProtocol?
-    private(set) var coordinator: HomeCoordinator?
+    private(set) weak var coordinator: HomeCoordinator?
     
     private var wordModel: WordTopModel?
     private var wordSynonyms: [WordSynonymModel]?
@@ -137,17 +142,55 @@ extension WordDetailViewModel {
 
 // ---- Protocol implementation ----
 extension WordDetailViewModel: WordDetailViewModelProtocol {
+    var wordString: String {
+        guard let word = wordModel?.word
+        else { return "" }
+        
+        return word.firstUpperCased()
+    }
     
-    var itemCount: Int {
-        return wordModel?.meanings.count ?? 0
+    var phonecticString: String {
+        return wordModel?.phonetic ?? ""
+    }
+    
+    var meaningsCount: Int {
+        let validCount = wordModel?.meanings?
+            .filter({ $0.partOfSpeech != nil }).count
+        return validCount ?? 0
+    }
+    
+    func definitionsCount(at index: Int) -> Int {
+        let definitionCount = wordModel?.meanings?[index]
+            .definitions?
+                .filter({ $0.definition != nil }).count
+        
+        return definitionCount ?? 0
     }
     
     func getMeaning(_ index: Int) -> WordMeaningModel? {
-        if index < 0 || index >= itemCount {
+        if index < 0 || index >= meaningsCount {
             return nil
         } else {
-            return wordModel?.meanings[index]
+            return wordModel?.meanings?[index]
         }
+    }
+    
+    func getDetailCellModel(section: Int, row: Int) -> DetailCellModel? {
+        guard let meaning = getMeaning(section)
+        else { return nil }
+        guard let definition = meaning.definitions?[row]
+        else { return nil }
+        guard let partOfSpeech = meaning.partOfSpeech
+        else { return nil }
+        guard let explanation = definition.definition
+        else { return nil }
+        
+        return .init(
+            number: row+1,
+            partOfSpeech: partOfSpeech.firstUpperCased(),
+            meaning: explanation,
+            example: definition.example
+        )
     }
     
     func queryForWord(_ word: String) {

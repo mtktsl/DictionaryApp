@@ -33,7 +33,7 @@ public struct Constant: GridContent {
     }
 }
 
-public struct Star: GridContent {
+public struct Expanded: GridContent {
     
     public var cells: [GridLength]
     
@@ -46,7 +46,7 @@ public struct Star: GridContent {
         cells = [GridLength]()
         
         for view in content() {
-            cells.append(.star(value: value,
+            cells.append(.expanded(value: value,
                                view: view,
                                horizontalAlignment: horizontalAlignment,
                                verticalAlignment: verticalAlignment,

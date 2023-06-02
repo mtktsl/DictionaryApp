@@ -80,12 +80,22 @@ final class HomeViewModel {
         guard let context = coordinator?.appDelegate?.persistentContainer.viewContext
         else { return }
         
-        let newItem = RecentSearch(context: context)
-        newItem.word = word
+        let upperWord = word.firstUpperCased()
         
-        if !recentSearches.filter({ $0.word == word }).isEmpty {
+        if !recentSearches.filter(
+            { recentSearch in
+                if let recentWord = recentSearch.word {
+                    return recentWord == upperWord
+                } else {
+                    return false
+                }
+            }
+        ).isEmpty {
             return
         }
+        
+        let newItem = RecentSearch(context: context)
+        newItem.word = upperWord
         
         if recentSearches.count == HomeVMConstants.cacheCapacity {
             let item = recentSearches.removeLast()
@@ -138,6 +148,12 @@ final class HomeViewModel {
             self.delegate?.reloadRecentSearches()
             self.coordinator?.navigateToDetail(firstModel)
         }
+    }
+    
+    private func mergeDuplicatePartOfSpeech(_ model: WordTopModel) -> WordTopModel? {
+        //TODO: Implement this method
+        let result = [WordMeaningModel]()
+        return nil
     }
     
     private func onQueryError(_ word: String, error: DictionaryAPIError) {

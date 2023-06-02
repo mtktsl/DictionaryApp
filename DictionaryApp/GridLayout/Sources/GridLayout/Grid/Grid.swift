@@ -99,7 +99,7 @@ public class Grid: UIView {
                     totalHeight = max(totalHeight, calculatedHeight)
                 }
                 
-            case .star(_, let view, _, _, let margin):
+            case .expanded(_, let view, _, _, let margin):
                 let size = calculateAutoCellSize(view: view,
                                                  maxSize: 0,
                                                  margin: margin)
@@ -113,6 +113,9 @@ public class Grid: UIView {
                 }
                 
             case .auto(let view, _, _, let maxSize, let margin):
+                if view.isHidden {
+                    continue
+                }
                 let size = calculateAutoCellSize(view: view,
                                                  maxSize: maxSize,
                                                  margin: margin)
@@ -180,7 +183,7 @@ public class Grid: UIView {
                                       margin: margin))
                 view.translatesAutoresizingMaskIntoConstraints = false
                 addSubview(view)
-            case .star(let value,
+            case .expanded(let value,
                        let view,
                        let horizontalAlignment,
                        let verticalAlignment,
@@ -214,7 +217,7 @@ public class Grid: UIView {
         totalGridStarts = 0
         for cell in cells {
             switch cell.gridLength {
-            case .star(let value, _, _, _, _):
+            case .expanded(let value, _, _, _, _):
                 totalGridStarts += value
             default:
                 break
@@ -225,6 +228,7 @@ public class Grid: UIView {
     private func calculateTotalConstants() {
         totalGridConstants = 0
         for cell in cells {
+            if cell.view.isHidden { continue }
             switch cell.gridLength {
             case .constant(let value, _, _, _, _):
                 totalGridConstants += value
@@ -285,7 +289,7 @@ public class Grid: UIView {
                 constraint.isActive = true
             }
             
-        case .star(_, _, _, _, _):
+        case .expanded(_, _, _, _, _):
             
             if gridType == .column {
                 var height = self.bounds.size.height * (cell.value / totalGridStarts) * starMultiplier
@@ -311,7 +315,12 @@ public class Grid: UIView {
                 let limit = self.bounds.size.height - cell.margin.top - cell.margin.bottom
                 var height = (cell.value > limit) ? limit : cell.value
                 height = (maxSize > 0 && maxSize < height) ? maxSize : height
-                height = calculateVerticalSpacing(cell: cell, size: height)
+                
+                if cell.view.isHidden {
+                    height = .zero
+                } else {
+                    height = calculateVerticalSpacing(cell: cell, size: height)
+                }
                 
                 let constraint = cell.view.heightAnchor.constraint(equalToConstant: height)
                 cell.constraints.append(constraint)
@@ -320,7 +329,12 @@ public class Grid: UIView {
                 let limit = self.bounds.size.width - cell.margin.right - cell.margin.left
                 var width = (cell.value > limit) ? limit : cell.value
                 width = (maxSize > 0 && maxSize < width) ? maxSize : width
-                width = calculateHorizontalSpacing(cell: cell, size: width)
+                
+                if cell.view.isHidden {
+                    width = .zero
+                } else {
+                    width = calculateHorizontalSpacing(cell: cell, size: width)
+                }
                 
                 let constraint = cell.view.widthAnchor.constraint(equalToConstant: width)
                 cell.constraints.append(constraint)
@@ -496,16 +510,32 @@ public class Grid: UIView {
     private func layoutArrangedCell(source: GridCell, target: GridCell) {
         if gridType == .column {
             
+            var topConstant = source.margin.top + source.spacing.top
             
-            let topConstant = source.margin.top + target.margin.bottom + target.spacing.bottom + source.spacing.top
+            switch target.gridLength {
+            case .auto(_, _, _, _, _):
+                if target.view.isHidden {
+                    topConstant -= target.margin.top
+                }
+            default:
+                topConstant += target.margin.bottom + target.spacing.bottom
+            }
             
             let constraint = source.view.topAnchor.constraint(equalTo: target.view.bottomAnchor, constant: topConstant)
             source.constraints.append(constraint)
             constraint.isActive = true
             
         } else {
+            var leftConstant = source.margin.left + source.spacing.left
             
-            let leftConstant = source.margin.left + target.margin.right + target.spacing.right + source.spacing.left
+            switch target.gridLength {
+            case .auto(_, _, _, _, _):
+                if target.view.isHidden {
+                    leftConstant -= target.margin.left
+                }
+            default:
+                leftConstant += target.margin.right + target.spacing.right
+            }
             
             let constraint = source.view.leadingAnchor.constraint(equalTo: target.view.trailingAnchor, constant: leftConstant)
             source.constraints.append(constraint)
@@ -514,6 +544,7 @@ public class Grid: UIView {
     }
     
     private func calculateVerticalSpacing(cell: GridCell, size: CGFloat) -> CGFloat {
+        //if cell.view.isHidden { return .zero }
         switch cell.verticalAlignment {
         case .constantTop(let h):
             let diff = (h > size) ? 0 : size - h
@@ -539,6 +570,7 @@ public class Grid: UIView {
     }
     
     private func calculateHorizontalSpacing(cell: GridCell, size: CGFloat) -> CGFloat {
+        //if cell.view.isHidden { return .zero }
         switch cell.horizontalAlignment {
         case .constantLeft(let w):
             let diff = (w > size) ? 0 : size - w
@@ -561,5 +593,13 @@ public class Grid: UIView {
         case .fill:
             return size < 0 ? 0 : size
         }
+    }
+    
+    public override func systemLayoutSizeFitting(_ targetSize: CGSize) -> CGSize {
+        return sizeThatFits(targetSize)
+    }
+    
+    override public func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        return sizeThatFits(targetSize)
     }
 }

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		6F0A6CB72A27652400AFAFB8 /* KeyboardObserver in Frameworks */ = {isa = PBXBuildFile; productRef = 6F0A6CB62A27652400AFAFB8 /* KeyboardObserver */; };
+		6F6C8E592A29AD2B0083CBA4 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6C8E582A29AD2B0083CBA4 /* DetailCell.swift */; };
+		6F6C8E5B2A29CB270083CBA4 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6C8E5A2A29CB270083CBA4 /* UIFont+Extension.swift */; };
+		6F950AA72A27DD1700B38794 /* ChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F950AA62A27DD1700B38794 /* ChangeObserver.swift */; };
+		6F950AB02A28A44400B38794 /* DetailCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F950AAF2A28A44400B38794 /* DetailCellModel.swift */; };
+		6F950AB22A28A57D00B38794 /* SynonymCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F950AB12A28A57D00B38794 /* SynonymCell.swift */; };
+		6F950AB42A28B4AD00B38794 /* NSLayoutConstaint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F950AB32A28B4AD00B38794 /* NSLayoutConstaint+Extension.swift */; };
+		6F950ADD2A29405C00B38794 /* String+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F950ADC2A29405C00B38794 /* String+Extention.swift */; };
 		6FA954A52A22E68800E11275 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA954A42A22E68800E11275 /* AppDelegate.swift */; };
 		6FA954A72A22E68800E11275 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA954A62A22E68800E11275 /* SceneDelegate.swift */; };
 		6FA954A92A22E68800E11275 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA954A82A22E68800E11275 /* HomeViewController.swift */; };
@@ -34,6 +41,13 @@
 
 /* Begin PBXFileReference section */
 		6F0A6CBB2A2772B000AFAFB8 /* KeyboardObserver */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = KeyboardObserver; path = ../KeyboardObserver; sourceTree = "<group>"; };
+		6F6C8E582A29AD2B0083CBA4 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
+		6F6C8E5A2A29CB270083CBA4 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		6F950AA62A27DD1700B38794 /* ChangeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeObserver.swift; sourceTree = "<group>"; };
+		6F950AAF2A28A44400B38794 /* DetailCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCellModel.swift; sourceTree = "<group>"; };
+		6F950AB12A28A57D00B38794 /* SynonymCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymCell.swift; sourceTree = "<group>"; };
+		6F950AB32A28B4AD00B38794 /* NSLayoutConstaint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstaint+Extension.swift"; sourceTree = "<group>"; };
+		6F950ADC2A29405C00B38794 /* String+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extention.swift"; sourceTree = "<group>"; };
 		6FA954A12A22E68800E11275 /* DictionaryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DictionaryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA954A42A22E68800E11275 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FA954A62A22E68800E11275 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +91,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F6C8E572A29AD180083CBA4 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				6F6C8E582A29AD2B0083CBA4 /* DetailCell.swift */,
+				6F950AB12A28A57D00B38794 /* SynonymCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		6F950AAA2A28793100B38794 /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				6F6C8E572A29AD180083CBA4 /* TableView */,
+				6F950AAB2A28794500B38794 /* CollectionView */,
+			);
+			path = CollectionViews;
+			sourceTree = "<group>";
+		};
+		6F950AAB2A28794500B38794 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				6FB0F9C92A25500300CDD3BA /* RecentSearchCell.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 		6FA954982A22E68800E11275 = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +143,6 @@
 				6FB0F9CD2A25571B00CDD3BA /* Coordinators */,
 				6FA954C42A22EA6200E11275 /* Views */,
 				6FB0F9D82A25EBE100CDD3BA /* Models */,
-				6FB0F9CE2A25577A00CDD3BA /* Cells */,
 				6FA954B22A22E68800E11275 /* Info.plist */,
 			);
 			path = DictionaryApp;
@@ -144,6 +183,7 @@
 		6FA954C42A22EA6200E11275 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6F950AAA2A28793100B38794 /* CollectionViews */,
 				6FB0F9BC2A24CCDD00CDD3BA /* WordDetail */,
 				6FA954C52A22EA6C00E11275 /* Home */,
 			);
@@ -165,6 +205,9 @@
 			children = (
 				6FA954D92A24797B00E11275 /* UIEdgeInsets+Extension.swift */,
 				6FB0F9C62A24F15700CDD3BA /* UIColor+Extension.swift */,
+				6F950AB32A28B4AD00B38794 /* NSLayoutConstaint+Extension.swift */,
+				6F950ADC2A29405C00B38794 /* String+Extention.swift */,
+				6F6C8E5A2A29CB270083CBA4 /* UIFont+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -182,6 +225,7 @@
 			children = (
 				6FB0F9BD2A24CCF300CDD3BA /* WordDetailViewController.swift */,
 				6FB0F9BF2A24CCFD00CDD3BA /* WordDetailViewModel.swift */,
+				6F950AA62A27DD1700B38794 /* ChangeObserver.swift */,
 			);
 			path = WordDetail;
 			sourceTree = "<group>";
@@ -196,20 +240,13 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
-		6FB0F9CE2A25577A00CDD3BA /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				6FB0F9C92A25500300CDD3BA /* RecentSearchCell.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		6FB0F9D82A25EBE100CDD3BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				6FB0F9D52A25E4F800CDD3BA /* RecentSearchCoreModel.xcdatamodeld */,
 				6FB0F9E22A25F14600CDD3BA /* RecentSearch+CoreDataClass.swift */,
 				6FB0F9CB2A25563800CDD3BA /* RecentSearchCellModel.swift */,
+				6F950AAF2A28A44400B38794 /* DetailCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -296,17 +333,24 @@
 				6FB0F9CC2A25563800CDD3BA /* RecentSearchCellModel.swift in Sources */,
 				6FB0F9E42A25F14600CDD3BA /* RecentSearch+CoreDataClass.swift in Sources */,
 				6FB0F9CA2A25500300CDD3BA /* RecentSearchCell.swift in Sources */,
+				6F950AB22A28A57D00B38794 /* SynonymCell.swift in Sources */,
 				6FB0F9A22A24B43500CDD3BA /* ApplicationConstants.swift in Sources */,
 				6FB0F9C72A24F15700CDD3BA /* UIColor+Extension.swift in Sources */,
 				6FB0F9BA2A24CC2C00CDD3BA /* HomeCoordinator.swift in Sources */,
 				6FB0F9D72A25E4F800CDD3BA /* RecentSearchCoreModel.xcdatamodeld in Sources */,
+				6F950ADD2A29405C00B38794 /* String+Extention.swift in Sources */,
 				6FB0F9B32A24C85E00CDD3BA /* HomeViewModel.swift in Sources */,
 				6FA954DA2A24797B00E11275 /* UIEdgeInsets+Extension.swift in Sources */,
+				6F6C8E592A29AD2B0083CBA4 /* DetailCell.swift in Sources */,
+				6F950AB02A28A44400B38794 /* DetailCellModel.swift in Sources */,
+				6F950AA72A27DD1700B38794 /* ChangeObserver.swift in Sources */,
 				6FB0F9C02A24CCFD00CDD3BA /* WordDetailViewModel.swift in Sources */,
+				6F6C8E5B2A29CB270083CBA4 /* UIFont+Extension.swift in Sources */,
 				6FA954A92A22E68800E11275 /* HomeViewController.swift in Sources */,
 				6FA954A52A22E68800E11275 /* AppDelegate.swift in Sources */,
 				6FA954A72A22E68800E11275 /* SceneDelegate.swift in Sources */,
 				6FB0F9B62A24CA1400CDD3BA /* AppCoordinator.swift in Sources */,
+				6F950AB42A28B4AD00B38794 /* NSLayoutConstaint+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

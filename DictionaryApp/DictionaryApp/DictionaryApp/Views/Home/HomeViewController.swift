@@ -21,10 +21,17 @@ class HomeViewController: UIViewController {
     
     lazy var keyboardObserver = KeyboardObserver(self)
     
+    var viewModel: HomeViewModelProtocol! {
+        didSet {
+            viewModel.delegate = self
+        }
+    }
+    
     lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(
             frame: .zero,
-            collectionViewLayout: UICollectionViewFlowLayout()
+            collectionViewLayout: layout
         )
         
         collectionView.register(RecentSearchCell.self,
@@ -36,24 +43,27 @@ class HomeViewController: UIViewController {
         return collectionView
     }()
     
-    var viewModel: HomeViewModelProtocol! {
-        didSet {
-            viewModel.delegate = self
-        }
-    }
+    lazy var label1 = makeLabel("HELLO", .systemRed)
+    lazy var label2 = makeLabel("HELLO", .systemGreen)
+    lazy var label3 = makeLabel("HELLO", .systemBlue)
     
     lazy var mainGrid = Grid.vertical {
-        Constant(value: 50,
-                 margin: .homeSearchBarMargin) {
-            searchBar
-        }
-        Auto(margin: .homeRecentLabelMargin) {
-            recentSearchLabel
-        }
-        Star(value: 1,
-             margin: .homeCollectionViewMargin) {
-            collectionView
-        }
+        searchBar
+            .Constant(value: 50, margin: .homeSearchBarMargin)
+        
+        recentSearchLabel
+            .Auto(margin: .homeRecentLabelMargin)
+        
+        collectionView
+            .Expanded(margin: .homeCollectionViewMargin)
+    }
+    
+    func makeLabel(_ text: String, _ color: UIColor, isHidden: Bool = false) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.backgroundColor = color
+        label.isHidden = isHidden
+        return label
     }
 }
 
@@ -70,6 +80,8 @@ extension HomeViewController {
         setupMainGrid()
         keyboardObserver.startResizingObserver()
         view.bringSubviewToFront(searchButton)
+        
+        //viewModel.queryForWord("Hello")
     }
     
     override func viewDidLayoutSubviews() {
@@ -119,7 +131,7 @@ extension HomeViewController {
                      margin: .homeSearchImageMargin) {
                 searchImage
             }
-            Star(value: 1,
+            Expanded(value: 1,
                  margin: .homeSearchTextMargin) {
                 searchField
             }
@@ -149,6 +161,8 @@ extension HomeViewController {
     
     @objc func onSearchTap(_ sender: Any) {
         self.view.endEditing(true)
+        label2.isHidden.toggle()
+        mainGrid.setNeedsLayout()
         viewModel.queryForWord(searchField.text ?? "")
     }
 }
@@ -202,6 +216,7 @@ extension HomeViewController: UICollectionViewDelegate {
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,

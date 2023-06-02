@@ -8,7 +8,7 @@
 import UIKit
 
 public enum GridLength {
-    case star(value: CGFloat,
+    case expanded(value: CGFloat,
               view: UIView,
               horizontalAlignment: GridHorizontalAlignment = .fill,
               verticalAlignment: GridVerticalAlignment = .fill,

@@ -9,9 +9,10 @@ import Foundation
 
 public struct WordMeaningModel: Decodable {
     public let partOfSpeech: String?
-    public let definitions: [WordDefinitionModel]
+    public let definitions: [WordDefinitionModel]?
 }
 
 public struct WordDefinitionModel: Decodable {
     public let definition: String?
+    public let example: String?
 }

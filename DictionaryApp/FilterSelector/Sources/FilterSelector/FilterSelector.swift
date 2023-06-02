@@ -43,12 +43,13 @@ public class FilterSelector: UIView {
         imageView.tintColor = .black
         
         let wrapperGrid = Grid.horizontal {
-            Star(value: 1, margin: .init(top: 5,
-                                         left: 5,
-                                         bottom: 5,
-                                         right: 5)) {
-                imageView
-            }
+            imageView
+                .Expanded(
+                    margin: .init(top: 5,
+                                  left: 5,
+                                  bottom: 5,
+                                  right: 5)
+                )
         }
         
         wrapperGrid.addGestureRecognizer(
@@ -59,6 +60,7 @@ public class FilterSelector: UIView {
         wrapperGrid.layer.borderWidth = 1
         wrapperGrid.layer.borderColor = borderSelectionColor.cgColor
         wrapperGrid.isHidden = true
+        wrapperGrid.backgroundColor = itemBackgroundColor
         return wrapperGrid
     }()
     
@@ -153,13 +155,14 @@ public class FilterSelector: UIView {
         label.font = self.font
         
         let grid = Grid.vertical {
-            Star(value: 1,
-                 margin: .init(top: 0,
-                               left: 20,
-                               bottom: 0,
-                               right: 20)) {
-                label
-            }
+            
+            label
+                .Expanded(
+                    margin: .init(top: 0,
+                                  left: 20,
+                                  bottom: 0,
+                                  right: 20)
+                )
         }
         
         grid.backgroundColor = itemBackgroundColor

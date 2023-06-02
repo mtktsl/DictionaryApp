@@ -29,18 +29,14 @@ class RecentSearchCell: UICollectionViewCell {
     }()
     
     lazy var mainGrid = Grid.horizontal {
-        Constant(value: 50,
-                 margin: .recentCellImageMargin) {
-            searchImageView
-        }
-        Star(value: 1,
-             margin: .init(0, 10)) {
-            textLabel
-        }
-        Constant(value: 50,
-                 margin: .recentCellArrowMargin) {
-            arrowImageView
-        }
+        searchImageView
+            .Constant(value: 50, margin: .recentCellImageMargin)
+        
+        textLabel
+            .Expanded(value: 1, margin: .init(0, 10))
+        
+        arrowImageView
+            .Constant(value: 50, margin: .recentCellArrowMargin)
     }
     
     override init(frame: CGRect) {
@@ -56,20 +52,19 @@ class RecentSearchCell: UICollectionViewCell {
         contentView.addSubview(mainGrid)
         
         mainGrid.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            mainGrid.topAnchor.constraint(equalTo: contentView.topAnchor),
-            mainGrid.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            mainGrid.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            mainGrid.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        ])
+        NSLayoutConstraint.expand(mainGrid, to: contentView)
+    }
+    
+    private func changeArrowImage(_ imageName: String) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.arrowImageView.image = UIImage(named: imageName)?.withHorizontallyFlippedOrientation()
+        }
     }
     
     func configure(with model: RecentSearchCellModel) {
         searchImageView.image = UIImage(named: model.searchImage)
         textLabel.text = model.searchText
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self.arrowImageView.image = UIImage(named: model.arrowImage)?.withHorizontallyFlippedOrientation()
-        }
+        changeArrowImage(model.arrowImage)
     }
 }

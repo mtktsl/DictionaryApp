@@ -19,5 +19,20 @@ extension UIColor {
         hue: 232.0 / 360.0,
         saturation: 0.72,
         brightness: 0.96,
-        alpha: 1)
+        alpha: 1
+    )
+    
+    static let detailHeaderBackgroundColor: UIColor = UIColor(
+        hue: 0,
+        saturation: 0,
+        brightness: 0.97,
+        alpha: 1
+    )
+    
+    static let detailExampleColor: UIColor = UIColor(
+        hue: 0,
+        saturation: 0,
+        brightness: 0.59,
+        alpha: 1
+    )
 }
