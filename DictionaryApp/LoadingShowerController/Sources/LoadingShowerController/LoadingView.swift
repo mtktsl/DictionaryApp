@@ -40,8 +40,10 @@ class LoadingView {
     }
     
     func hideLoading() {
-        blurView.removeFromSuperview()
-        activityIndicator.stopAnimating()
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.blurView.removeFromSuperview()
+            self.activityIndicator.stopAnimating()
+        }
     }
-    
 }

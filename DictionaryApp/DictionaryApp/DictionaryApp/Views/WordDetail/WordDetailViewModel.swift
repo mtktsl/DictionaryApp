@@ -11,7 +11,8 @@ import DictionaryAPI
 // ---- Constants ----
 extension WordDetailViewModel {
     fileprivate enum DetailVMConstants {
-        
+        static let synonymTitle = "Synonym"
+        static let maxSynonymNum = 5
     }
     
     fileprivate enum DetailQueryError: Error {
@@ -38,12 +39,16 @@ protocol WordDetailViewModelProtocol: AnyObject {
     var phonecticString: String { get }
     
     var meaningsCount: Int { get }
+    var isSynonymAvailable: Bool { get }
+    
     func definitionsCount(at index: Int) -> Int
     
     func getMeaning(_ index: Int) -> WordMeaningModel?
     func getDetailCellModel(section: Int, row: Int) -> DetailCellModel?
+    func getSynonymCellModel() -> SynonymCellModel
     func queryForWord(_ word: String)
     func navigateToDetail(_ wordModel: WordTopModel)
+    func getPartOfSpeeches() -> [String]
 }
 
 // ---- Class definition ----
@@ -51,6 +56,7 @@ final class WordDetailViewModel {
     private(set) var service: DictionaryAPIProtocol?
     private(set) weak var coordinator: HomeCoordinator?
     
+    private var synonymSuccess = false
     private var wordModel: WordTopModel?
     private var wordSynonyms: [WordSynonymModel]?
     
@@ -109,7 +115,10 @@ final class WordDetailViewModel {
 extension WordDetailViewModel {
     private func onQuerySuccess(_ wordModel: [WordTopModel]) {
         guard let model = wordModel.first else { return }
-        coordinator?.navigateToDetail(model)
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.coordinator?.navigateToDetail(model)
+        }
     }
     
     private func onQueryError(_ word: String, error: DictionaryAPIError) {
@@ -132,16 +141,24 @@ extension WordDetailViewModel {
     
     private func onSynonymSuccess(_ synonyms: [WordSynonymModel]) {
         self.wordSynonyms = synonyms
+        synonymSuccess = true
         delegate?.synonymFetchSuccess()
     }
     
     private func onSynonymError(_ error: DictionaryAPIError) {
+        synonymSuccess = false
         delegate?.synonymFetchError(error: error)
     }
 }
 
 // ---- Protocol implementation ----
 extension WordDetailViewModel: WordDetailViewModelProtocol {
+    
+    var isSynonymAvailable: Bool {
+        return !(wordSynonyms?.isEmpty ?? true)
+    }
+    
+    
     var wordString: String {
         guard let word = wordModel?.word
         else { return "" }
@@ -150,16 +167,36 @@ extension WordDetailViewModel: WordDetailViewModelProtocol {
     }
     
     var phonecticString: String {
-        return wordModel?.phonetic ?? ""
+        
+        if let phonetic = wordModel?.phonetic {
+            return phonetic
+        } else {
+            
+            for text in wordModel?.phonetics ?? [] {
+                if let result = text.text {
+                    return result
+                }
+            }
+        }
+        return ""
     }
     
     var meaningsCount: Int {
         let validCount = wordModel?.meanings?
             .filter({ $0.partOfSpeech != nil }).count
-        return validCount ?? 0
+        
+        let result = validCount ?? 0
+        return wordSynonyms?.count ?? 0 > 0 ? result + 1 : result
     }
     
     func definitionsCount(at index: Int) -> Int {
+        
+        if let count = wordModel?.meanings?.count {
+            if index >= count {
+                return 1
+            }
+        }
+        
         let definitionCount = wordModel?.meanings?[index]
             .definitions?
                 .filter({ $0.definition != nil }).count
@@ -173,6 +210,16 @@ extension WordDetailViewModel: WordDetailViewModelProtocol {
         } else {
             return wordModel?.meanings?[index]
         }
+    }
+    
+    func getPartOfSpeeches() -> [String] {
+        var result = [String]()
+        for meaning in wordModel?.meanings ?? [] {
+            if let speech = meaning.partOfSpeech {
+                result.append(speech)
+            }
+        }
+        return result
     }
     
     func getDetailCellModel(section: Int, row: Int) -> DetailCellModel? {
@@ -191,6 +238,20 @@ extension WordDetailViewModel: WordDetailViewModelProtocol {
             meaning: explanation,
             example: definition.example
         )
+    }
+    
+    func getSynonymCellModel() -> SynonymCellModel {
+        
+        var words = [String]()
+        for synonymModel in wordSynonyms ?? [] {
+            if let synonymWord = synonymModel.word {
+                words.append(synonymWord)
+            }
+        }
+        
+        return .init(title: DetailVMConstants.synonymTitle,
+                     synonyms: words,
+                     maxItemNum: DetailVMConstants.maxSynonymNum)
     }
     
     func queryForWord(_ word: String) {

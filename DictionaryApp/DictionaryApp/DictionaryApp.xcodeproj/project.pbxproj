@@ -10,9 +10,10 @@
 		6F0A6CB72A27652400AFAFB8 /* KeyboardObserver in Frameworks */ = {isa = PBXBuildFile; productRef = 6F0A6CB62A27652400AFAFB8 /* KeyboardObserver */; };
 		6F6C8E592A29AD2B0083CBA4 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6C8E582A29AD2B0083CBA4 /* DetailCell.swift */; };
 		6F6C8E5B2A29CB270083CBA4 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6C8E5A2A29CB270083CBA4 /* UIFont+Extension.swift */; };
-		6F6C8E5E2A29E58A0083CBA4 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6C8E5D2A29E58A0083CBA4 /* LoadingView.swift */; };
-		6F6C8E602A29E5BF0083CBA4 /* LoadingShower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6C8E5F2A29E5BF0083CBA4 /* LoadingShower.swift */; };
 		6F6C8E632A29E8DD0083CBA4 /* LoadingShowerController in Frameworks */ = {isa = PBXBuildFile; productRef = 6F6C8E622A29E8DD0083CBA4 /* LoadingShowerController */; };
+		6F6C8E672A29F7050083CBA4 /* SynonymSingleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6C8E662A29F7050083CBA4 /* SynonymSingleCell.swift */; };
+		6F6C8E692A2A0ADC0083CBA4 /* SynonymCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6C8E682A2A0ADC0083CBA4 /* SynonymCollectionLayout.swift */; };
+		6F6C8E6B2A2A1BAD0083CBA4 /* SynonymCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F6C8E6A2A2A1BAD0083CBA4 /* SynonymCellModel.swift */; };
 		6F950AA72A27DD1700B38794 /* ChangeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F950AA62A27DD1700B38794 /* ChangeObserver.swift */; };
 		6F950AB02A28A44400B38794 /* DetailCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F950AAF2A28A44400B38794 /* DetailCellModel.swift */; };
 		6F950AB22A28A57D00B38794 /* SynonymCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F950AB12A28A57D00B38794 /* SynonymCell.swift */; };
@@ -46,9 +47,10 @@
 		6F0A6CBB2A2772B000AFAFB8 /* KeyboardObserver */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = KeyboardObserver; path = ../KeyboardObserver; sourceTree = "<group>"; };
 		6F6C8E582A29AD2B0083CBA4 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		6F6C8E5A2A29CB270083CBA4 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
-		6F6C8E5D2A29E58A0083CBA4 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		6F6C8E5F2A29E5BF0083CBA4 /* LoadingShower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingShower.swift; sourceTree = "<group>"; };
 		6F6C8E612A29E67C0083CBA4 /* LoadingShowerController */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LoadingShowerController; path = ../LoadingShowerController; sourceTree = "<group>"; };
+		6F6C8E662A29F7050083CBA4 /* SynonymSingleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymSingleCell.swift; sourceTree = "<group>"; };
+		6F6C8E682A2A0ADC0083CBA4 /* SynonymCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymCollectionLayout.swift; sourceTree = "<group>"; };
+		6F6C8E6A2A2A1BAD0083CBA4 /* SynonymCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymCellModel.swift; sourceTree = "<group>"; };
 		6F950AA62A27DD1700B38794 /* ChangeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeObserver.swift; sourceTree = "<group>"; };
 		6F950AAF2A28A44400B38794 /* DetailCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCellModel.swift; sourceTree = "<group>"; };
 		6F950AB12A28A57D00B38794 /* SynonymCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymCell.swift; sourceTree = "<group>"; };
@@ -107,28 +109,29 @@
 			path = TableView;
 			sourceTree = "<group>";
 		};
-		6F6C8E5C2A29E57A0083CBA4 /* LoadingView */ = {
+		6F6C8E6C2A2A2E2E0083CBA4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				6F6C8E5D2A29E58A0083CBA4 /* LoadingView.swift */,
-				6F6C8E5F2A29E5BF0083CBA4 /* LoadingShower.swift */,
+				6F950AA62A27DD1700B38794 /* ChangeObserver.swift */,
 			);
-			path = LoadingView;
+			path = Common;
 			sourceTree = "<group>";
 		};
-		6F950AAA2A28793100B38794 /* CollectionViews */ = {
+		6F950AAA2A28793100B38794 /* ColectionCells */ = {
 			isa = PBXGroup;
 			children = (
 				6F6C8E572A29AD180083CBA4 /* TableView */,
 				6F950AAB2A28794500B38794 /* CollectionView */,
 			);
-			path = CollectionViews;
+			path = ColectionCells;
 			sourceTree = "<group>";
 		};
 		6F950AAB2A28794500B38794 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				6FB0F9C92A25500300CDD3BA /* RecentSearchCell.swift */,
+				6F6C8E662A29F7050083CBA4 /* SynonymSingleCell.swift */,
+				6F6C8E682A2A0ADC0083CBA4 /* SynonymCollectionLayout.swift */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				6FA954C32A22EA4B00E11275 /* Application */,
+				6F6C8E6C2A2A2E2E0083CBA4 /* Common */,
 				6FA954CC2A22F2B000E11275 /* Extensions */,
 				6FB0F9CD2A25571B00CDD3BA /* Coordinators */,
 				6FA954C42A22EA6200E11275 /* Views */,
@@ -200,8 +204,7 @@
 		6FA954C42A22EA6200E11275 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6F6C8E5C2A29E57A0083CBA4 /* LoadingView */,
-				6F950AAA2A28793100B38794 /* CollectionViews */,
+				6F950AAA2A28793100B38794 /* ColectionCells */,
 				6FB0F9BC2A24CCDD00CDD3BA /* WordDetail */,
 				6FA954C52A22EA6C00E11275 /* Home */,
 			);
@@ -243,7 +246,6 @@
 			children = (
 				6FB0F9BD2A24CCF300CDD3BA /* WordDetailViewController.swift */,
 				6FB0F9BF2A24CCFD00CDD3BA /* WordDetailViewModel.swift */,
-				6F950AA62A27DD1700B38794 /* ChangeObserver.swift */,
 			);
 			path = WordDetail;
 			sourceTree = "<group>";
@@ -265,6 +267,7 @@
 				6FB0F9E22A25F14600CDD3BA /* RecentSearch+CoreDataClass.swift */,
 				6FB0F9CB2A25563800CDD3BA /* RecentSearchCellModel.swift */,
 				6F950AAF2A28A44400B38794 /* DetailCellModel.swift */,
+				6F6C8E6A2A2A1BAD0083CBA4 /* SynonymCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -352,8 +355,6 @@
 				6FB0F9CC2A25563800CDD3BA /* RecentSearchCellModel.swift in Sources */,
 				6FB0F9E42A25F14600CDD3BA /* RecentSearch+CoreDataClass.swift in Sources */,
 				6FB0F9CA2A25500300CDD3BA /* RecentSearchCell.swift in Sources */,
-				6F6C8E5E2A29E58A0083CBA4 /* LoadingView.swift in Sources */,
-				6F6C8E602A29E5BF0083CBA4 /* LoadingShower.swift in Sources */,
 				6F950AB22A28A57D00B38794 /* SynonymCell.swift in Sources */,
 				6FB0F9A22A24B43500CDD3BA /* ApplicationConstants.swift in Sources */,
 				6FB0F9C72A24F15700CDD3BA /* UIColor+Extension.swift in Sources */,
@@ -364,10 +365,13 @@
 				6FA954DA2A24797B00E11275 /* UIEdgeInsets+Extension.swift in Sources */,
 				6F6C8E592A29AD2B0083CBA4 /* DetailCell.swift in Sources */,
 				6F950AB02A28A44400B38794 /* DetailCellModel.swift in Sources */,
+				6F6C8E672A29F7050083CBA4 /* SynonymSingleCell.swift in Sources */,
+				6F6C8E692A2A0ADC0083CBA4 /* SynonymCollectionLayout.swift in Sources */,
 				6F950AA72A27DD1700B38794 /* ChangeObserver.swift in Sources */,
 				6FB0F9C02A24CCFD00CDD3BA /* WordDetailViewModel.swift in Sources */,
 				6F6C8E5B2A29CB270083CBA4 /* UIFont+Extension.swift in Sources */,
 				6FA954A92A22E68800E11275 /* HomeViewController.swift in Sources */,
+				6F6C8E6B2A2A1BAD0083CBA4 /* SynonymCellModel.swift in Sources */,
 				6FA954A52A22E68800E11275 /* AppDelegate.swift in Sources */,
 				6FA954A72A22E68800E11275 /* SceneDelegate.swift in Sources */,
 				6FB0F9B62A24CA1400CDD3BA /* AppCoordinator.swift in Sources */,

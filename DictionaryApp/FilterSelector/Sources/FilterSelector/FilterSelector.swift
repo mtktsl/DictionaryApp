@@ -23,6 +23,7 @@ public class FilterSelector: UIView {
     
     public var filters = [String]() {
         didSet {
+            filters = makeFiltersUnique(filters)
             setupStackView()
         }
     }
@@ -90,6 +91,7 @@ public class FilterSelector: UIView {
         self.itemBackgroundColor = itemBackgroundColor
         self.cancelImage = cancelImage
         self.filters = makeFiltersUnique(filters)
+        
         self.itemSpacing = itemSpacing
         
         addSubview(stackView)

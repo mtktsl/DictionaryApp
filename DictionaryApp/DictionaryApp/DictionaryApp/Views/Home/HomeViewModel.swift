@@ -150,12 +150,6 @@ final class HomeViewModel {
         }
     }
     
-    private func mergeDuplicatePartOfSpeech(_ model: WordTopModel) -> WordTopModel? {
-        //TODO: Implement this method
-        let result = [WordMeaningModel]()
-        return nil
-    }
-    
     private func onQueryError(_ word: String, error: DictionaryAPIError) {
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }

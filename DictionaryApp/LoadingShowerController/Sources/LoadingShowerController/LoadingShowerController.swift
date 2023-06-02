@@ -1,12 +1,15 @@
 
 import UIKit
 
-public protocol LoadingShowerController where Self: UIViewController {
+//NOTE: This implementation belongs to Kerim Caglar
+//I was already going to do the same things so instead i fetched it
+//github: https://github.com/kcaglarr
+public protocol LoadingShower: AnyObject {
     func showLoading()
     func hideLoading()
 }
 
-public extension LoadingShowerController {
+public extension LoadingShower {
     func showLoading() {
         LoadingView.shared.startLoading()
     }

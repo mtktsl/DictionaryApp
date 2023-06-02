@@ -1,3 +1,2 @@
 # LoadingShowerController
 
-A description of this package.

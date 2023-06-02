@@ -19,22 +19,8 @@ class WordDetailViewController: UIViewController {
     
     var isFooterAvailable = false
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero,
-                                    style: .plain)
-        
-        tableView.register(DetailCell.self,
-                           forCellReuseIdentifier: DetailCell.reuseIdentifier)
-        
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 200
-        
-        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
-        tableView.dataSource = self
-        
-        return tableView
-    }()
+    let tableView: UITableView = UITableView(frame: .zero,
+                                             style: .plain)
     
     lazy var wordLabel: UILabel = {
         let wordLabel = UILabel()
@@ -65,14 +51,11 @@ class WordDetailViewController: UIViewController {
     
     //TODO: Get filters from viewModel
     let filterSelector = FilterSelector(
-        filters: [
-            "Noun",
-            "Verb",
-            "Adjective"
-                 ],
         cancelImage: UIImage(systemName: "xmark"),
         borderColor: .systemGray3,
         borderSelectionColor: .homeButtonColor)
+    
+    let filterScrollView = UIScrollView()
     
     lazy var headerGrid = Grid.vertical {
         Grid.horizontal {
@@ -90,7 +73,7 @@ class WordDetailViewController: UIViewController {
                 .Auto(margin: .init(5, 0, 0, 5))
         }.Auto()
         
-        filterSelector
+        filterScrollView
             .Constant(value: 59, margin: .init(5, 20, 20))
     }
     
@@ -115,7 +98,10 @@ extension WordDetailViewController {
         
         view.addSubview(mainGrid)
         
-        //The reason i'm doing this is that i realized that the view frame is being incosistend when controller is being loaded and that causes cells to have inconsistent sizes.
+        filterSelector.filters = viewModel.getPartOfSpeeches()
+        setupTableView()
+        
+        //The reason i'm starting an observation vor view frame is that i realized that the view frame is being incosistend when controller is being loaded and that causes cells to have inconsistent sizes.
         //So I needed to trigger layout functions of the views after the final change of view frame
         frameObserver.startListening(self,
                                      source: \.view?.frame
@@ -123,19 +109,51 @@ extension WordDetailViewController {
             guard let self else { return }
             self.tableView.reloadData()
             self.mainGrid.frame = self.view.frame.inset(by: view.safeAreaInsets)
+            setupScrollView()
         }
+    }
+    
+    func setupScrollView() {
+        filterScrollView.addSubview(filterSelector)
+        let size = filterSelector.sizeThatFits(.init(width: 0,
+                                                     height: view.bounds.size.height))
+        let frame = CGRect(x: 0, y: 0,
+                           width: size.width,
+                           height: 34)
+        filterSelector.frame = frame
+        filterScrollView.contentSize = frame.size
+    }
+    
+    func setupTableView() {
+        
+        tableView.register(DetailCell.self,
+                           forCellReuseIdentifier: DetailCell.reuseIdentifier)
+        tableView.register(SynonymCell.self,
+                           forCellReuseIdentifier: SynonymCell.reuseIdentifier)
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 200
+        
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        tableView.dataSource = self
     }
 }
 
 extension WordDetailViewController: WordDetailViewModelDelegate {
     func synonymFetchSuccess() {
         isFooterAvailable = true
-        //collectionView.reloadData()
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     func synonymFetchError(error: Error) {
         isFooterAvailable = false
-        //collectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     func soundFetchSuccess() {
@@ -159,21 +177,44 @@ extension WordDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: DetailCell.reuseIdentifier,
-            for: indexPath
-        ) as? DetailCell
-        else { fatalError("Failed to retreive detail cell.") }
-        
-        
-        guard let dataModel = viewModel.getDetailCellModel(
-            section: indexPath.section,
-            row: indexPath.row
-        ) else { fatalError("Failed to find data at indexPath: \(indexPath)") }
-        
-        cell.configure(with: dataModel)
-        cell.selectionStyle = .none
-        
-        return cell
+        if indexPath.section < (viewModel.isSynonymAvailable ? viewModel.meaningsCount - 1 : viewModel.meaningsCount) {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: DetailCell.reuseIdentifier,
+                for: indexPath
+            ) as? DetailCell
+            else { fatalError("Failed to retreive detail cell.") }
+            
+            
+            guard let dataModel = viewModel.getDetailCellModel(
+                section: indexPath.section,
+                row: indexPath.row
+            ) else { fatalError("Failed to find data at indexPath: \(indexPath)") }
+            
+            cell.configure(with: dataModel)
+            cell.selectionStyle = .none
+            
+            return cell
+        } else  {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: SynonymCell.reuseIdentifier,
+                for: indexPath
+            ) as? SynonymCell
+            else { fatalError("Failed to retreive Synonym Cell") }
+            
+            let model = viewModel.getSynonymCellModel()
+            
+            cell.configure(with: model)
+            cell.selectionStyle = .none
+            
+            cell.delegate = self
+            
+            return cell
+        }
+    }
+}
+
+extension WordDetailViewController: SynonymCellDelegate {
+    func onCellTapped(_ text: String) {
+        self.viewModel.queryForWord(text)
     }
 }

@@ -80,8 +80,6 @@ extension HomeViewController {
         setupMainGrid()
         keyboardObserver.startResizingObserver()
         view.bringSubviewToFront(searchButton)
-        
-        //viewModel.queryForWord("Hello")
     }
     
     override func viewDidLayoutSubviews() {
