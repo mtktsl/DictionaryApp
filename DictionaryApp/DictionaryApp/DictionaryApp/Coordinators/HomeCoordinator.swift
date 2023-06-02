@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import DictionaryAPI
+import LoadingShowerController
 
-final class HomeCoordinator: CoordinatorProtocol {
+final class HomeCoordinator: CoordinatorProtocol, LoadingShower {
     
     private(set) var appDelegate: AppDelegate?
     private(set) var childCoordinators: [CoordinatorProtocol] = []

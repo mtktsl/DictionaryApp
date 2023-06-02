@@ -171,9 +171,8 @@ extension WordDetailViewController: UITableViewDataSource {
             row: indexPath.row
         ) else { fatalError("Failed to find data at indexPath: \(indexPath)") }
         
-        
-        
         cell.configure(with: dataModel)
+        cell.selectionStyle = .none
         
         return cell
     }

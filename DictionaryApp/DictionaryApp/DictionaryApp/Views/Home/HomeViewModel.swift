@@ -223,13 +223,15 @@ extension HomeViewModel: HomeViewModelProtocol {
     }
     
     func queryForWord(_ word: String) {
+        
         let trimmedWord = word.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmedWord.isEmpty {
             generateErrorPopUp(.emptyTextField)
         } else {
+            coordinator?.showLoading()
             service?.dictionaryQuery(trimmedWord) { [weak self] result in
                 guard let self else { return }
-                
+                self.coordinator?.hideLoading()
                 switch result {
                 case .success(let data):
                     self.onQuerySuccess(data)

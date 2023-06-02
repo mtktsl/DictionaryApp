@@ -123,7 +123,5 @@ class DetailCell: UITableViewCell {
             exampleLabel.isHidden  = true
             exampleLabel.text = ""
         }
-        
-        //topGrid.setNeedsLayout()
     }
 }
